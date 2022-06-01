@@ -1,0 +1,7 @@
+Sage Cummins 5124935
+
+The majority of the project was implemented as described, however, there are some issues with the bitmap interpretation that I was not able to fully implement correctly. To locate the bitmap I used the node ID found in the superblock, multiplied it by block size and subtracted one to find the correct address, and used lseek to set the offset there. I then loaded the following information of the bitmap block into an unsigned character array. Then using shift operators I loaded each bit value for each byte in the array, These values were then used to determine if the coresponding block was in use or not, if it was unused it was to be put in a seperate array. The goal was, using this array, to be able to list all unused blocks. To find unused inodes I used a very similar strategy for the inode bitmap, however, in practice it resulted in an incorrect list.
+
+For the root directory I attempted to utilize the inode table to load in the appropriate directory data. I went to the first group in the file system and loaded into the provided first inode table block. I then skipped the first 128 bytes since the root is stored in inode ID 2 and the size of an inode is 128 bytes. After this I attempted to load into the i_node[0] and iterate root data until the total rec_len value resulted in the block size. However, this did not produce the data that I was trying to access.
+
+The other parts of the project were implemented as described in the project file.

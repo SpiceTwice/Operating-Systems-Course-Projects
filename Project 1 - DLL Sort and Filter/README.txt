@@ -1,0 +1,13 @@
+access
+arch_prtcl
+execve
+brl
+close
+execve
+exit_group
+fstat
+mmap
+mprotect
+openat
+pread64
+read
